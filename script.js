@@ -19,7 +19,7 @@ const CONTENT = {
   photoAlt: "Fotografía de Aliss",
   tianaPath: "./fotos/tiana.png",
   rayPath: "./fotos/rey.png",
-  lilyPath: "./fotos/lirio.png"
+  lilyPath: "./fotos/lirio.png",
   photoCaption: "Que nunca falten lirios, buena música y motivos para sonreír.",
   closingMessage: "Que este nuevo año de vida tenga días tranquilos, sueños cumplidos y muchas razones para celebrar. Feliz cumpleaños, {fullName}.",
   finalLabel: "Un último detalle",
