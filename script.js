@@ -8,20 +8,20 @@ const CONFIG = {
 const CONTENT = {
   openingTitle: "Tengo algo para ti, {shortName}",
   celebrationTitle: "¡Feliz cumpleaños, {shortName}!",
-  celebrationSubtitle: "Hoy, un pequeño detalle para celebrar tu día.",
+  celebrationSubtitle: "Te tengo un pequeño detalle .",
   openLabel: "Toca para abrir",
   swipeHint: "desliza →",
   phrases: [
-    "Que este año te traiga lo que sueñas, y ganas de seguir persiguiéndolo.",
-    "Que entre los días de siempre aparezcan momentos que quieras recordar por mucho tiempo."
+    "Que este año te traiga lo que sueñas, y dale con toda, y siempre ten esas ganas de seguir comiendote al mundo.",
+    "Disfruta los pequeños momentos, valóralos y atesóralos para que se conviertan en recuerdos que quieras guardar por mucho tiempo."
   ],
   photoPath: "./fotos/aliss.jpeg",
   photoAlt: "Fotografía de Aliss",
   tianaPath: "./fotos/tiana.png",
   rayPath: "./fotos/rey.png",
-  lilyPath: "./fotos/lirio.png"
-  photoCaption: "Que nunca falten lirios, buena música y motivos para sonreír.",
-  closingMessage: "Que este nuevo año de vida tenga días tranquilos, sueños cumplidos y muchas razones para celebrar. Feliz cumpleaños, {fullName}.",
+  lilyPath: "./fotos/lirio.png",
+  photoCaption: "Que nunca te falten momentos felices, buena música y razones para sonreír.",
+  closingMessage: "Que este nuevo año de vida llegue lleno de momentos especiales, sueños cumplidos y muchas razones para celebrar. ¡Feliz cumpleaños, {fullName}!",
   finalLabel: "Un último detalle",
   musicLabel: "Una canción para ti",
   reducedMotionNote: "Que tengas un cumpleaños muy bonito."
@@ -59,19 +59,6 @@ function configureMusicLink() {
   link.textContent = CONTENT.musicLabel;
   link.href = CONFIG.musicUrl;
   link.hidden = !CONFIG.musicUrl;
-}
-
-function renderFireflies() {
-  const layer = document.querySelector(".fireflies");
-  const positions = [[12, 23], [79, 18], [24, 40], [88, 48], [8, 71], [73, 76], [44, 14], [57, 86]];
-  positions.forEach(([left, top], index) => {
-    const firefly = document.createElement("span");
-    firefly.className = "firefly";
-    firefly.style.left = `${left}%`;
-    firefly.style.top = `${top}%`;
-    firefly.style.animationDelay = `${index * -.55}s`;
-    layer.append(firefly);
-  });
 }
 
 function renderDots() {
@@ -225,7 +212,6 @@ function setupPhotoFallback() {
 function init() {
   setupPhotoFallback();
   setContent();
-  renderFireflies();
   renderDots();
   setPanelAccessibility(0);
   document.querySelector("#open-lily").addEventListener("click", openLily);
