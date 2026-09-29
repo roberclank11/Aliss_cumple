@@ -140,7 +140,9 @@ h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); li
   margin: auto;
   max-width: 100%;
   display: block;
+  transition: filter .45s ease;
 }
+.closing-panel:has(.final-wish) .image-rey { filter: drop-shadow(0 0 .75rem var(--firefly)); }
 
 .image-lirio {
   width: clamp(10rem, 30vw, 18rem);
@@ -175,6 +177,20 @@ h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); li
 .rey-image { width: clamp(8rem, 22vw, 12rem); height: auto; object-fit: contain; margin: auto; display: block; }
 .closing-copy h2 { max-width: 19ch; margin: 0 auto 1.5rem; font-size: clamp(2.15rem, 9vw, 3.1rem); line-height: 1.02; }
 .signature { margin: 0 0 2rem; color: var(--sage); font: italic 1.45rem/1.2 var(--serif); }
+.final-wish {
+  margin: 1.25rem auto 0;
+  padding: 1.25rem;
+  border: 1px solid rgba(242,201,76,.65);
+  border-radius: 1rem;
+  color: var(--ink);
+  background: var(--lily);
+  box-shadow: 0 0 2rem rgba(242,201,76,.2);
+  opacity: 0;
+  transform: scale(.94);
+  animation: wish-card-in .45s ease forwards;
+}
+.final-wish p { margin: 0; font: 500 1.25rem/1.25 var(--serif); }
+.final-wish p + p { margin-top: .5rem; }
 .music-link { display: block; margin: 1.5rem 0 0; color: var(--lily); font: 500 .8rem/1.4 var(--sans); text-decoration: underline; text-underline-offset: .25em; }
 .final-note { min-height: 1.5em; margin: 1rem 0 0; color: var(--sage); font: 400 .8rem/1.4 var(--sans); }
 .carousel-controls { position: relative; z-index: 4; display: flex; align-items: center; justify-content: center; gap: clamp(.75rem, 3vw, 1.5rem); min-height: var(--nav-height); padding: .5rem 1rem max(.5rem, env(safe-area-inset-bottom)); }
@@ -186,7 +202,16 @@ h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); li
 .progress-dot[aria-selected="true"] { background: var(--swamp); border-color: var(--sage); }
 .carousel-controls.is-light .progress-dot[aria-selected="true"] { background: var(--ink); border-color: var(--ink); }
 .fireflies, .lily-layer { position: absolute; z-index: 0; inset: 0; pointer-events: none; overflow: hidden; }
-.firefly { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--firefly); opacity: .65; animation: glow 3.6s ease-in-out infinite; }
+.firefly { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--firefly); opacity: .65; animation: glow 3.6s ease-in-out infinite; transition: left .6s ease, top .6s ease, transform .6s ease, opacity .6s ease; }
+.fireflies.wish-halo-active .firefly { left: 50% !important; top: 63% !important; opacity: .9; animation: none; }
+.fireflies.wish-halo-active .firefly:nth-child(1) { transform: translate(-8rem, -3rem); }
+.fireflies.wish-halo-active .firefly:nth-child(2) { transform: translate(6rem, -4rem); }
+.fireflies.wish-halo-active .firefly:nth-child(3) { transform: translate(-10rem, 1rem); }
+.fireflies.wish-halo-active .firefly:nth-child(4) { transform: translate(8rem, 2rem); }
+.fireflies.wish-halo-active .firefly:nth-child(5) { transform: translate(-5rem, 5rem); }
+.fireflies.wish-halo-active .firefly:nth-child(6) { transform: translate(4rem, 5rem); }
+.fireflies.wish-halo-active .firefly:nth-child(7) { transform: translate(-1rem, -5rem); }
+.fireflies.wish-halo-active .firefly:nth-child(8) { transform: translate(1rem, 6rem); }
 .lily-layer { z-index: 5; }
 .falling-lily { position: absolute; top: -5rem; width: var(--size); height: var(--size); animation: fall-lily var(--duration) ease-in forwards; }
 .falling-petal { fill: var(--lily); stroke: var(--sage); stroke-width: 1.2; stroke-linejoin: round; }
@@ -200,6 +225,7 @@ h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); li
 @keyframes glow { 0%, 100% { opacity: .25; transform: scale(.75); } 50% { opacity: .9; transform: scale(1.15); } }
 @keyframes fall-lily { 0% { opacity: 0; transform: translate3d(0, -2rem, 0) rotate(var(--rotation)); } 12% { opacity: .95; } 50% { transform: translate3d(var(--drift), 45vh, 0) rotate(calc(var(--rotation) + 80deg)); } 100% { opacity: 0; transform: translate3d(calc(var(--drift) * -1), 108vh, 0) rotate(calc(var(--rotation) + 150deg)); } }
 @keyframes photo-in { from { opacity: 0; transform: rotate(-2deg) scale(.94); } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+@keyframes wish-card-in { to { opacity: 1; transform: scale(1); } }
 .photo-panel:not([aria-hidden="true"]) .polaroid { animation: photo-in .65s ease both; }
 
 /* 5. Responsive y movimiento reducido */
@@ -222,10 +248,17 @@ h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); li
   .celebration-message { font-size: 2.35rem; }
   .celebration-subtitle { max-width: 22ch; font-size: .9rem; }
   .frog { right: -4%; bottom: 8%; width: 29%; }
+  .fireflies.wish-halo-active .firefly:nth-child(1) { transform: translate(-6.5rem, -3rem); }
+  .fireflies.wish-halo-active .firefly:nth-child(2) { transform: translate(5rem, -4rem); }
+  .fireflies.wish-halo-active .firefly:nth-child(3) { transform: translate(-7rem, 1rem); }
+  .fireflies.wish-halo-active .firefly:nth-child(4) { transform: translate(6rem, 2rem); }
   .carousel-controls { gap: .55rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .firefly { animation: none; }
+  .final-wish { opacity: 1; transform: none; animation: none; }
+  .image-rey { transition: none; filter: none !important; }
   .phrase-word { opacity: 1 !important; transform: none !important; }
   .falling-lily { display: none !important; }
 }

@@ -67,9 +67,6 @@
             <h1 id="opening-title" data-content="openingTitle"></h1>
             <button class="button button--open" id="open-lily" type="button"></button>
           </div>
-          <div class="opening-decor">
-            <img src="./fotos/tiana.png" alt="Tiana decorativa" class="image-tiana" aria-hidden="true">
-          </div>
           <div class="celebration-state" hidden>
             <h2 class="celebration-message" data-content="celebrationTitle"></h2>
             <p class="celebration-subtitle" data-content="celebrationSubtitle"></p>
@@ -101,7 +98,7 @@
           <p class="panel-kicker">Un momento para guardar</p>
           <h2 id="photo-title" class="sr-only">Una fotografía para recordar</h2>
           <figure class="polaroid">
-            <img id="birthday-photo" src="./fotos/aliss.jpeg" alt="Fotografía de Aliss" loading="lazy">
+            <img id="birthday-photo" alt="Fotografía de Aliss" loading="eager">
             <div class="photo-fallback" hidden>Tu fotografía aparecerá aquí</div>
           </figure>
           <p class="photo-caption" data-content="photoCaption"></p>
@@ -114,6 +111,7 @@
           <h2 id="closing-title" data-content="closingMessage"></h2>
           <p class="signature" data-content="signature"></p>
           <button class="button button--final" id="final-detail" type="button"></button>
+          <div id="final-wish-slot"></div>
           <a class="music-link" id="music-link" target="_blank" rel="noopener noreferrer" hidden></a>
           <p class="final-note" id="final-note" role="status" aria-live="polite"></p>
           <div class="closing-decor">

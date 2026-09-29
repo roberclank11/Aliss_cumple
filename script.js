@@ -8,26 +8,28 @@ const CONFIG = {
 const CONTENT = {
   openingTitle: "Tengo algo para ti, {shortName}",
   celebrationTitle: "¡Feliz cumpleaños, {shortName}!",
-  celebrationSubtitle: "Hoy, un pequeño detalle para celebrar tu día.",
+  celebrationSubtitle: "Te tengo un pequeño detalle para celebrar tu día.",
   openLabel: "Toca para abrir",
   swipeHint: "desliza →",
   phrases: [
-    "Que este año te traiga lo que sueñas, y ganas de seguir persiguiéndolo.",
-    "Que entre los días de siempre aparezcan momentos que quieras recordar por mucho tiempo."
+    "Que este año te traiga lo que sueñas, y dale con toda, y estoy seguro que vas a seguir con esas ganas de seguir comiendote al mundo.",
+    "Disfruta los pequeños momentos, valóralos y atesóralos, nunca dejes de sonreír, y verás que vas a tener muchos recuerdos que quieras guardar por mucho tiempo."
   ],
   photoPath: "./fotos/aliss.jpeg",
   photoAlt: "Fotografía de Aliss",
   tianaPath: "./fotos/tiana.png",
   rayPath: "./fotos/rey.png",
   lilyPath: "./fotos/lirio.png",
-  photoCaption: "Que nunca falten lirios, buena música y motivos para sonreír.",
-  closingMessage: "Que este nuevo año de vida tenga días tranquilos, sueños cumplidos y muchas razones para celebrar. Feliz cumpleaños, {fullName}.",
-  finalLabel: "Un último detalle",
+  photoCaption: "Que nunca te falten momentos felices, buena música y razones para sonreír.",
+  closingMessage: "Que este nuevo año de vida llegue lleno de momentos especiales, sueños cumplidos y muchas razones para celebrar. ¡Feliz cumpleaños, {fullName}!",
+  finalLabel: "Abrir un deseo para ti",
+  finalWish: "Que sigas avanzando con confianza, disfrutando cada etapa y celebrando todos los logros que están por llegar.",
+  finalWishGreeting: "¡Feliz cumpleaños, Aliss!",
   musicLabel: "Una canción para ti",
   reducedMotionNote: "Que tengas un cumpleaños muy bonito."
 };
 
-const state = { isOpen: false, currentPanel: 0, phraseRendered: new Set(), finalEffectRunning: false };
+const state = { isOpen: false, currentPanel: 0, phraseRendered: new Set(), finalWishVisible: false };
 const carousel = document.querySelector("#birthday-carousel");
 const panels = [...document.querySelectorAll("[data-panel]")];
 const controls = document.querySelector(".carousel-controls");
@@ -63,6 +65,7 @@ function configureMusicLink() {
 
 function renderFireflies() {
   const layer = document.querySelector(".fireflies");
+  if (layer.children.length) return;
   const positions = [[12, 23], [79, 18], [24, 40], [88, 48], [8, 71], [73, 76], [44, 14], [57, 86]];
   positions.forEach(([left, top], index) => {
     const firefly = document.createElement("span");
@@ -192,15 +195,25 @@ function createLilies(count) {
 }
 
 function triggerFinalEffect() {
-  if (state.finalEffectRunning) return;
-  state.finalEffectRunning = true;
-  if (prefersReducedMotion()) {
-    document.querySelector("#final-note").textContent = CONTENT.reducedMotionNote;
-    state.finalEffectRunning = false;
-    return;
-  }
-  createLilies(14);
-  window.setTimeout(() => { state.finalEffectRunning = false; }, 7200);
+  if (state.finalWishVisible) return;
+  state.finalWishVisible = true;
+  const button = document.querySelector("#final-detail");
+  const card = document.createElement("section");
+  const wish = document.createElement("p");
+  const greeting = document.createElement("p");
+  card.className = "final-wish";
+  card.tabIndex = -1;
+  card.setAttribute("role", "region");
+  card.setAttribute("aria-label", "Deseo de cumpleaños");
+  card.setAttribute("aria-live", "polite");
+  wish.textContent = CONTENT.finalWish;
+  greeting.textContent = CONTENT.finalWishGreeting;
+  card.append(wish, greeting);
+  button.disabled = true;
+  button.setAttribute("aria-expanded", "true");
+  document.querySelector("#final-wish-slot").append(card);
+  if (!prefersReducedMotion()) document.querySelector(".fireflies").classList.add("wish-halo-active");
+  card.focus();
 }
 
 function prefersReducedMotion() {
