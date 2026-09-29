@@ -1,0 +1,231 @@
+/* 1. Variables y fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap");
+
+:root {
+  --swamp: #2F5D50;
+  --sage: #8FB996;
+  --lily: #FBF8F1;
+  --firefly: #F2C94C;
+  --ink: #1E3A32;
+  --line: #d9dfd8;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --nav-height: 0px;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--swamp);
+  font-synthesis: none;
+}
+
+/* 2. Estilos generales */
+* { box-sizing: border-box; }
+html, body { margin: 0; min-width: 320px; min-height: 100%; }
+body { background: var(--swamp); }
+button[hidden], [hidden] { display: none !important; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+button:focus-visible, a:focus-visible, .carousel:focus-visible {
+  outline: 3px solid var(--firefly);
+  outline-offset: 4px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 3. Pantallas y componentes */
+.experience {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  overflow: visible;
+  background: var(--swamp);
+}
+.experience.has-navigation { --nav-height: 4.5rem; }
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  height: calc(100dvh - var(--nav-height));
+  min-height: 100vh;
+  min-height: calc(100dvh - var(--nav-height));
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.carousel::-webkit-scrollbar { display: none; }
+.panel {
+  position: relative;
+  flex: 0 0 100%;
+  min-height: 100%;
+  padding: max(2.5rem, env(safe-area-inset-top)) 1.5rem max(5rem, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  scroll-snap-align: start;
+  display: grid;
+  place-items: center;
+}
+.panel--opening { grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; }
+.panel--swamp { color: var(--lily); background: var(--swamp); }
+.panel--light { color: var(--ink); background: var(--lily); }
+.opening-copy, .closing-copy, .panel-copy { position: relative; z-index: 2; width: min(100%, 25rem); text-align: center; }
+.opening-copy { grid-row: 2; }
+.eyebrow, .panel-kicker {
+  margin: 0 0 1.25rem;
+  font: 500 .75rem/1.4 var(--sans);
+  letter-spacing: .08em;
+  text-transform: lowercase;
+}
+h1, h2, p { margin-top: 0; }
+h1, h2 { font-family: var(--serif); font-weight: 500; }
+h1 { max-width: 15ch; margin: 0 auto; font-size: clamp(2.15rem, 6vw, 4.2rem); line-height: .96; }
+.celebration-message { max-width: 15ch; margin: 0 auto .75rem; font: 500 clamp(2.15rem, 6vw, 3.5rem)/.96 var(--serif); }
+.celebration-subtitle { max-width: 24ch; margin: 0 auto 1.75rem; font: 400 1rem/1.5 var(--sans); }
+.button {
+  min-height: 48px;
+  padding: .8rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--firefly);
+  cursor: pointer;
+  font: 500 .9rem/1 var(--sans);
+  transition: transform .2s ease, background-color .2s ease;
+}
+.button:hover { background: #f6d565; transform: translateY(-2px); }
+.button:active { transform: translateY(0); }
+.swipe-hint { margin: 1.5rem 0 0; color: var(--sage); font: 500 .75rem/1.3 var(--sans); letter-spacing: .08em; }
+.pond-art { position: relative; grid-row: 1; align-self: end; justify-self: center; width: clamp(12rem, 46vw, 22rem); aspect-ratio: 1; }
+.lily { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.lily-bud { transform-origin: 140px 190px; transition: opacity .5s ease, transform .9s cubic-bezier(.22, .8, .24, 1); }
+.bud { fill: var(--lily); stroke: var(--sage); stroke-width: 2; }
+.bud-line { fill: none; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; }
+.lily-open { opacity: 0; transform: scale(.35) rotate(-5deg); transform-origin: 140px 190px; transition: opacity .6s ease, transform 1s cubic-bezier(.22, .8, .24, 1); }
+.petal { fill: var(--lily); stroke: var(--sage); stroke-width: 2; stroke-linejoin: round; }
+.petal--front { fill: #fffdf8; }
+.stamens path { fill: none; stroke: #ba9440; stroke-width: 2; stroke-linecap: round; }
+.stamens circle { fill: var(--firefly); stroke: #ba9440; stroke-width: 1; }
+.is-open .lily-bud { opacity: 0; transform: scale(.6); }
+.is-open .lily-open { opacity: 1; transform: scale(1) rotate(0); }
+.leaf { position: absolute; bottom: 3%; width: 45%; height: 12%; border: 2px solid #527e67; background: var(--sage); border-radius: 100% 0 100% 0; }
+.leaf--left { left: 8%; transform: rotate(18deg); }
+.leaf--right { right: 8%; transform: scaleX(-1) rotate(18deg); }
+.frog { position: absolute; right: -1%; bottom: 6%; width: 31%; opacity: .9; transform: rotate(-6deg); }
+
+.image-tiana {
+  width: clamp(8rem, 25vw, 14rem);
+  height: auto;
+  object-fit: contain;
+  margin: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.image-rey {
+  width: clamp(6rem, 20vw, 10rem);
+  height: auto;
+  object-fit: contain;
+  margin: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.image-lirio {
+  width: clamp(10rem, 30vw, 18rem);
+  height: auto;
+  object-fit: contain;
+  margin: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.frog { position: absolute; right: -1%; bottom: 6%; width: 31%; opacity: .9; transform: rotate(-6deg); }
+.frog-body, .frog-head { fill: #7cae73; stroke: #527e67; stroke-width: 2; }
+.frog-eye { fill: var(--lily); stroke: #527e67; stroke-width: 2; }
+.frog-pupil { fill: var(--ink); }
+.frog-smile, .frog-leg { fill: none; stroke: #527e67; stroke-width: 2; stroke-linecap: round; }
+.corner-leaf { position: absolute; z-index: 1; width: 9rem; height: 3.5rem; border: 2px solid #6d9b78; border-radius: 100% 0 100% 0; background: var(--sage); opacity: .8; }
+.corner-leaf--one { top: 4%; left: -2rem; transform: rotate(28deg); }
+.corner-leaf--two { top: 7%; left: -2.4rem; transform: rotate(45deg); }
+.lily-pad { position: absolute; right: -2rem; bottom: 8%; width: 10rem; height: 4.4rem; border: 2px solid #527e67; border-radius: 50%; background: var(--sage); transform: rotate(-12deg); }
+.lily-pad::after { content: ""; position: absolute; left: 50%; top: 50%; width: 55%; height: 2px; background: #527e67; transform: rotate(-30deg); transform-origin: left; }
+.panel-copy { align-self: center; }
+.panel-kicker { color: #66816f; }
+.phrase { min-height: 8.6em; margin: 0 auto; font-size: clamp(2.4rem, 10vw, 3.35rem); font-style: italic; line-height: 1.03; }
+.phrase-word { display: inline-block; margin-right: .22em; }
+.photo-panel { align-items: center; }
+.panel-copy--photo { display: flex; flex-direction: column; align-items: center; }
+.polaroid { width: min(82vw, 20rem); min-height: 15rem; margin: .5rem auto 1.5rem; padding: .75rem .75rem 2.5rem; border: 1px solid var(--line); background: #fff; transform: rotate(-2deg); }
+.polaroid img { display: block; width: 100%; height: auto; max-height: 48vh; object-fit: contain; }
+.photo-fallback { display: grid; min-height: 12rem; place-items: center; padding: 2rem; color: #66816f; background: #eef1eb; font: 400 .9rem/1.4 var(--sans); text-align: center; }
+.photo-caption { max-width: 27ch; margin: 0 auto; font: 500 1.15rem/1.35 var(--serif); }
+.tiana-image { width: clamp(12rem, 35vw, 27rem); height: auto; object-fit: contain; margin: auto; display: block; }
+.rey-image { width: clamp(8rem, 22vw, 12rem); height: auto; object-fit: contain; margin: auto; display: block; }
+.closing-copy h2 { max-width: 19ch; margin: 0 auto 1.5rem; font-size: clamp(2.15rem, 9vw, 3.1rem); line-height: 1.02; }
+.signature { margin: 0 0 2rem; color: var(--sage); font: italic 1.45rem/1.2 var(--serif); }
+.music-link { display: block; margin: 1.5rem 0 0; color: var(--lily); font: 500 .8rem/1.4 var(--sans); text-decoration: underline; text-underline-offset: .25em; }
+.final-note { min-height: 1.5em; margin: 1rem 0 0; color: var(--sage); font: 400 .8rem/1.4 var(--sans); }
+.carousel-controls { position: relative; z-index: 4; display: flex; align-items: center; justify-content: center; gap: clamp(.75rem, 3vw, 1.5rem); min-height: var(--nav-height); padding: .5rem 1rem max(.5rem, env(safe-area-inset-bottom)); }
+.icon-button { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(251,248,241,.7); border-radius: 50%; color: var(--lily); background: var(--swamp); cursor: pointer; font: 1.1rem/1 var(--sans); }
+.icon-button:disabled { opacity: .3; cursor: not-allowed; }
+.carousel-controls.is-light .icon-button { border-color: rgba(30,58,50,.55); color: var(--ink); background: var(--lily); }
+.progress-dots { display: flex; align-items: center; gap: .6rem; }
+.progress-dot { width: 12px; height: 12px; padding: 0; border: 2px solid transparent; border-radius: 50%; background: var(--sage); cursor: pointer; }
+.progress-dot[aria-selected="true"] { background: var(--swamp); border-color: var(--sage); }
+.carousel-controls.is-light .progress-dot[aria-selected="true"] { background: var(--ink); border-color: var(--ink); }
+.fireflies, .lily-layer { position: absolute; z-index: 0; inset: 0; pointer-events: none; overflow: hidden; }
+.firefly { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--firefly); opacity: .65; animation: glow 3.6s ease-in-out infinite; }
+.lily-layer { z-index: 5; }
+.falling-lily { position: absolute; top: -5rem; width: var(--size); height: var(--size); animation: fall-lily var(--duration) ease-in forwards; }
+.falling-petal { fill: var(--lily); stroke: var(--sage); stroke-width: 1.2; stroke-linejoin: round; }
+.falling-petal--back { fill: #f5f1e7; }
+.falling-petal--front { fill: #fffdf8; }
+.falling-center { fill: var(--firefly); stroke: #ba9440; stroke-width: 1; }
+.falling-stamen { fill: none; stroke: #ba9440; stroke-width: 1.2; stroke-linecap: round; }
+.petal--back, .petal--back-right, .petal--left, .petal--right, .petal--front { transform-box: fill-box; transform-origin: center; }
+
+/* 4. Animaciones */
+@keyframes glow { 0%, 100% { opacity: .25; transform: scale(.75); } 50% { opacity: .9; transform: scale(1.15); } }
+@keyframes fall-lily { 0% { opacity: 0; transform: translate3d(0, -2rem, 0) rotate(var(--rotation)); } 12% { opacity: .95; } 50% { transform: translate3d(var(--drift), 45vh, 0) rotate(calc(var(--rotation) + 80deg)); } 100% { opacity: 0; transform: translate3d(calc(var(--drift) * -1), 108vh, 0) rotate(calc(var(--rotation) + 150deg)); } }
+@keyframes photo-in { from { opacity: 0; transform: rotate(-2deg) scale(.94); } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+.photo-panel:not([aria-hidden="true"]) .polaroid { animation: photo-in .65s ease both; }
+
+/* 5. Responsive y movimiento reducido */
+@media (min-width: 720px) {
+  .panel--opening { grid-template-columns: minmax(16rem, 1fr) minmax(22rem, 38.75rem); grid-template-rows: 1fr; column-gap: clamp(2rem, 8vw, 8rem); padding-right: clamp(2rem, 8vw, 8rem); padding-left: clamp(2rem, 8vw, 8rem); }
+  .panel--opening .pond-art { grid-column: 1; grid-row: 1; width: clamp(18rem, 35vw, 27rem); }
+  .panel--opening .opening-copy { grid-column: 2; grid-row: 1; }
+  .panel-copy, .opening-copy, .closing-copy { width: min(100%, 38.75rem); }
+  .closing-copy h2 { max-width: 23ch; }
+}
+@media (max-height: 700px) and (max-width: 480px) {
+  .panel { padding-top: max(1.25rem, env(safe-area-inset-top)); padding-bottom: max(1.25rem, env(safe-area-inset-bottom)); }
+  .pond-art { width: clamp(10rem, 42vw, 15rem); }
+  .closing-panel { padding-top: 3rem; }
+}
+@media (max-width: 380px) {
+  .panel { padding-right: 1.15rem; padding-left: 1.15rem; }
+  .pond-art { width: 11.5rem; }
+  h1 { font-size: 2.25rem; }
+  .celebration-message { font-size: 2.35rem; }
+  .celebration-subtitle { max-width: 22ch; font-size: .9rem; }
+  .frog { right: -4%; bottom: 8%; width: 29%; }
+  .carousel-controls { gap: .55rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .phrase-word { opacity: 1 !important; transform: none !important; }
+  .falling-lily { display: none !important; }
+}

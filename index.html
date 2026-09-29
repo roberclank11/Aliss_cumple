@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2F5D50">
+  <title>Detalle de cumpleaños</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="experience" aria-label="Detalle de cumpleaños">
+    <div class="fireflies" aria-hidden="true"></div>
+    <div class="lily-layer" aria-hidden="true"></div>
+    <svg class="svg-defs" aria-hidden="true" width="0" height="0" focusable="false">
+      <symbol id="falling-lily-symbol" viewBox="0 0 100 100">
+        <path class="falling-petal falling-petal--back" d="M50 67C31 56 23 35 32 17C35 11 40 8 45 7C50 22 52 43 50 67Z"/>
+        <path class="falling-petal falling-petal--back" d="M50 67C69 56 77 35 68 17C65 11 60 8 55 7C50 22 48 43 50 67Z"/>
+        <path class="falling-petal" d="M50 71C30 71 14 62 12 48C11 42 13 37 18 33C32 38 43 50 50 71Z"/>
+        <path class="falling-petal" d="M50 71C70 71 86 62 88 48C89 42 87 37 82 33C68 38 57 50 50 71Z"/>
+        <path class="falling-petal falling-petal--front" d="M50 80C39 73 34 62 36 51C38 43 43 38 50 35C57 38 62 43 64 51C66 62 61 73 50 80Z"/>
+        <circle class="falling-center" cx="50" cy="57" r="7"/>
+        <path class="falling-stamen" d="M46 58L41 48M49 59L47 46M54 59L57 46M57 58L63 48"/>
+        <circle class="falling-center" cx="41" cy="48" r="1.8"/><circle class="falling-center" cx="47" cy="46" r="1.8"/>
+        <circle class="falling-center" cx="57" cy="46" r="1.8"/><circle class="falling-center" cx="63" cy="48" r="1.8"/>
+      </symbol>
+    </svg>
+
+    <section class="carousel" id="birthday-carousel" aria-label="Mensaje de cumpleaños" tabindex="0" aria-live="polite">
+      <article class="panel panel--swamp panel--opening" data-panel="0" aria-labelledby="opening-title">
+        <div class="pond-art pond-art--opening" aria-hidden="true">
+          <span class="leaf leaf--left"></span>
+          <span class="leaf leaf--right"></span>
+          <svg class="lily" viewBox="0 0 280 280" role="img" aria-label="Un capullo de lirio que se abre">
+            <g class="lily-bud">
+              <path class="bud" d="M140 48C113 71 100 111 105 152C109 182 124 202 140 210C156 202 171 182 175 152C180 111 167 71 140 48Z"/>
+              <path class="bud-line" d="M140 61V192"/>
+            </g>
+            <g class="lily-open" aria-hidden="true">
+              <path class="petal petal--back" d="M140 181C95 156 74 109 93 65C99 51 112 43 125 40C139 73 144 121 140 181Z"/>
+              <path class="petal petal--back-right" d="M140 181C185 156 206 109 187 65C181 51 168 43 155 40C141 73 136 121 140 181Z"/>
+              <path class="petal petal--left" d="M140 191C92 190 54 169 47 134C44 119 50 105 61 95C93 108 119 137 140 191Z"/>
+              <path class="petal petal--right" d="M140 191C188 190 226 169 233 134C236 119 230 105 219 95C187 108 161 137 140 191Z"/>
+              <path class="petal petal--front" d="M140 207C113 191 97 164 101 133C104 112 119 97 140 88C161 97 176 112 179 133C183 164 167 191 140 207Z"/>
+              <g class="stamens">
+                <path d="M123 159L112 124M132 163L127 119M148 163L153 119M157 159L168 124"/>
+                <circle cx="112" cy="124" r="4"/><circle cx="127" cy="119" r="4"/><circle cx="153" cy="119" r="4"/><circle cx="168" cy="124" r="4"/>
+              </g>
+            </g>
+          </svg>
+          <svg class="frog" viewBox="0 0 180 120" aria-hidden="true">
+            <ellipse class="frog-body" cx="90" cy="72" rx="45" ry="27"/>
+            <ellipse class="frog-head" cx="90" cy="51" rx="35" ry="25"/>
+            <ellipse class="frog-eye" cx="70" cy="30" rx="11" ry="13"/>
+            <ellipse class="frog-eye" cx="110" cy="30" rx="11" ry="13"/>
+            <circle class="frog-pupil" cx="70" cy="30" r="4"/>
+            <circle class="frog-pupil" cx="110" cy="30" r="4"/>
+            <path class="frog-smile" d="M69 57C80 66 100 66 111 57"/>
+            <path class="frog-leg" d="M58 76L35 93M122 76L145 93"/>
+          </svg>
+        </div>
+        <div class="opening-copy">
+          <div class="opening-state">
+            <p class="eyebrow">Un detalle para ti</p>
+            <h1 id="opening-title" data-content="openingTitle"></h1>
+            <button class="button button--open" id="open-lily" type="button"></button>
+          </div>
+          <div class="opening-decor">
+            <img src="./fotos/tiana.png" alt="Tiana decorativa" class="image-tiana" aria-hidden="true">
+          </div>
+          <div class="celebration-state" hidden>
+            <h2 class="celebration-message" data-content="celebrationTitle"></h2>
+            <p class="celebration-subtitle" data-content="celebrationSubtitle"></p>
+            <p class="swipe-hint" id="swipe-hint"></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel panel--light" data-panel="1" aria-labelledby="phrase-one-title" aria-hidden="true" inert>
+        <span class="corner-leaf corner-leaf--one" aria-hidden="true"></span>
+        <div class="panel-copy">
+          <p class="panel-kicker">Para este nuevo año</p>
+          <h2 id="phrase-one-title" class="phrase" data-phrase="0"></h2>
+        </div>
+        <span class="lily-pad lily-pad--one" aria-hidden="true"></span>
+      </article>
+
+      <article class="panel panel--light" data-panel="2" aria-labelledby="phrase-two-title" aria-hidden="true" inert>
+        <span class="corner-leaf corner-leaf--two" aria-hidden="true"></span>
+        <div class="panel-copy">
+          <p class="panel-kicker">Un deseo más</p>
+          <h2 id="phrase-two-title" class="phrase" data-phrase="1"></h2>
+        </div>
+        <span class="lily-pad lily-pad--two" aria-hidden="true"></span>
+      </article>
+
+      <article class="panel panel--light photo-panel" data-panel="3" aria-labelledby="photo-title" aria-hidden="true" inert>
+        <div class="panel-copy panel-copy--photo">
+          <p class="panel-kicker">Un momento para guardar</p>
+          <h2 id="photo-title" class="sr-only">Una fotografía para recordar</h2>
+          <figure class="polaroid">
+            <img id="birthday-photo" src="./fotos/aliss.jpeg" alt="Fotografía de Aliss" loading="lazy">
+            <div class="photo-fallback" hidden>Tu fotografía aparecerá aquí</div>
+          </figure>
+          <p class="photo-caption" data-content="photoCaption"></p>
+        </div>
+      </article>
+
+      <article class="panel panel--swamp closing-panel" data-panel="4" aria-labelledby="closing-title" aria-hidden="true" inert>
+        <div class="closing-copy">
+          <p class="eyebrow">Con cariño y buenos deseos</p>
+          <h2 id="closing-title" data-content="closingMessage"></h2>
+          <p class="signature" data-content="signature"></p>
+          <button class="button button--final" id="final-detail" type="button"></button>
+          <a class="music-link" id="music-link" target="_blank" rel="noopener noreferrer" hidden></a>
+          <p class="final-note" id="final-note" role="status" aria-live="polite"></p>
+          <div class="closing-decor">
+            <img src="./fotos/rey.png" alt="Ray decorativa" class="image-rey" aria-hidden="true">
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <nav class="carousel-controls" aria-label="Controles del mensaje" hidden>
+      <button class="icon-button" id="previous-slide" type="button" aria-label="Pantalla anterior" disabled>
+        <span aria-hidden="true">←</span>
+      </button>
+      <div class="progress-dots" id="progress-dots" role="tablist" aria-label="Elegir pantalla"></div>
+      <button class="icon-button" id="next-slide" type="button" aria-label="Pantalla siguiente">
+        <span aria-hidden="true">→</span>
+      </button>
+    </nav>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
